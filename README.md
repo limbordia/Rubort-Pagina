@@ -50,4 +50,6 @@ Desde la terminal
 
 ``` Abre el arhivo index.html y te mandara a tu navegador ```
 
+- Logo 
+
 ![Texto alternativo de la imagen](7064713a8ddb5d11914bb9a8b74b4898.jpg)
