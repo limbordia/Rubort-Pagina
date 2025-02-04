@@ -14,8 +14,10 @@ Una breve descripción de lo que hace la página web.
 Para ejecutar la página web localmente, necesitas:
 
  ```
+
 - Node js  ( https://nodejs.org/ )
 - Un navegador web moderno (Chrome, Firefox, etc.)
+
  ```
 
 ## Instalación
@@ -26,18 +28,26 @@ Para ejecutar la página web localmente, necesitas:
 
 
 Hacerlo desde el CMD de  la carpeta del archivo
+
  ```
+
     npm install cors
     npm install express
+
    ```
 
-5. Inicia el servidor (si aplica):
+2. Inicia el servidor (si aplica):
   
 Desde la terminal  
- ```
- node server.js 
+
  ```
 
-6. Abre la página web en tu navegador:
+ node server.js 
+
+ ```
+
+3. Pagina web
+
+``` Abre el arhivo index.html y te mandara a tu navegador ```
 
 ![Texto alternativo de la imagen](7064713a8ddb5d11914bb9a8b74b4898.jpg)
