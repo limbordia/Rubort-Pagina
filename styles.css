@@ -1,0 +1,179 @@
+/* Estilos básicos omitidos (se mantienen iguales) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  header {
+    width: 100%;
+  }
+  
+  .navbar {
+    background-color: #ff7b00;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+  }
+  
+  .navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  main {
+    max-width: 800px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .about {
+    margin: 20px 0;
+    background-color: #fff3e0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about h2 {
+    font-size: 22px;
+    color: #ff7b00;
+    margin-bottom: 10px;
+  }
+  
+  .about p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .password-section {
+    background-color: #3b76aa9f;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .password-section h2 {
+    font-size: 22px;
+    color: #0078ff;
+    margin-bottom: 10px;
+  }
+  
+  .password-display {
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #333;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #0078ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #005bcc;
+  }
+  
+.qr-section {
+    background-color: #298fd896;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .qr-section h2 {
+    font-size: 22px;
+    color: #0077ff83;
+    margin-bottom: 10px;
+  }
+  
+  .qr-input {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .qr-display {
+    margin-top: 10px;
+    display: inline-block;
+  }
+/* Estilos básicos omitidos (se mantienen iguales) */
+
+.qr-section {
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .qr-section h2 {
+    font-size: 22px;
+    color: #0078ff;
+    margin-bottom: 10px;
+  }
+  
+  .qr-input {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .qr-display {
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  /* Estilo común para los cuadros */
+.content-box {
+  background-color: #2677e244;
+  border: 2px solid #5f51dd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  color: #333;
+  text-align: center;
+  font-size: 16px;
+  min-height: 50px;
+}

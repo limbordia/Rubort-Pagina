@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rubort</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <img src="file:///C:/Users/rabtag/Desktop/Pagina%20web/7064713a8ddb5d11914bb9a8b74b4898.jpg " alt="Ícono de Rubort" class="navbar-icon">
+      <h1 class="navbar-title">Rubort</h1>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about">
+      <h2>¿Quiénes somos?</h2>
+      <p>Somos una página donde te ayudamos a la creación de tu contraseña 100% segura. También la podemos clasificar, y si tienes ganas de ver Netflix, ¡te creamos una cuenta para que puedas disfrutar!</p>
+    </section>
+
+    <section class="password-section">
+      <h2>Creación Password</h2>
+      <div class="password-display content-box" id="passwordDisplay">Tu contraseña aparecerá aquí.</div>
+      <div class="button-group">
+        <button onclick="generarPassword()">Generar Contraseña Segura</button>
+        <button onclick="guardarPasswordTxt()">Guardar .txt</button>
+        <button onclick="guardarPasswordPdf()">Guardar .pdf</button>
+        <button onclick="copiarPassword()">Copiar</button>
+      </div>
+    </section>
+
+    <section class="qr-section">
+      <h2>Creación QR</h2>
+      <input type="text" id="qrInput" placeholder="Ingresa un enlace" class="qr-input">
+      <button onclick="generarQR()">Generar QR</button>
+      <br>
+      <button id="saveQRBtn" onclick="guardarQRPdf()" style="display:none;">Guardar QR en .pdf</button>
+      <div id="qrCode" class="qr-display"></div>
+    </section>
+
+    <section class="content-box">
+      <h2>ACORTADOR</h2>
+      <input type="text" id="urlInput" placeholder="Ingresa un enlace" class="url-input">
+      <button onclick="acortarEnlace()">Acortar</button>
+      <div id="shortenedUrlDisplay" class="content-box">Tu enlace acortado aparecerá aquí.</div>
+    </section>
+  </main>
+
+  <script>
+    function generarPassword() {
+      const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+<>?";
+      let password = "";
+      for (let i = 0; i < 16; i++) {
+        password += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+      }
+      document.getElementById("passwordDisplay").textContent = password;
+    }
+
+    function guardarPasswordTxt() {
+      const password = document.getElementById("passwordDisplay").textContent;
+      if (password === "Tu contraseña aparecerá aquí.") {
+        alert("Primero genera una contraseña.");
+        return;
+      }
+      const blob = new Blob([password], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "password.txt";
+      link.click();
+    }
+
+    async function guardarPasswordPdf() {
+      const { jsPDF } = window.jspdf;
+      const password = document.getElementById("passwordDisplay").textContent;
+      if (password === "Tu contraseña aparecerá aquí.") {
+        alert("Primero genera una contraseña.");
+        return;
+      }
+      const doc = new jsPDF();
+      doc.text(`Tu contraseña segura: ${password}`, 10, 10);
+      doc.save("password.pdf");
+    }
+
+    function copiarPassword() {
+      const password = document.getElementById("passwordDisplay").textContent;
+      if (password === "Tu contraseña aparecerá aquí.") {
+        alert("Primero genera una contraseña.");
+        return;
+      }
+      navigator.clipboard.writeText(password)
+        .then(() => alert("Contraseña copiada al portapapeles."))
+        .catch(() => alert("Hubo un error al copiar la contraseña."));
+    }
+
+    function generarQR() {
+      const qrContainer = document.getElementById("qrCode");
+      const qrInput = document.getElementById("qrInput").value;
+
+      if (!qrInput) {
+        alert("Por favor, introduce un enlace válido.");
+        return;
+      }
+
+      qrContainer.innerHTML = "";
+
+      new QRCode(qrContainer, {
+        text: qrInput,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff"
+      });
+
+      document.getElementById("saveQRBtn").style.display = "inline-block";
+    }
+
+    function guardarQRPdf() {
+      const { jsPDF } = window.jspdf;
+      const qrInput = document.getElementById("qrInput").value;
+      const qrContainer = document.getElementById("qrCode");
+
+      if (!qrInput) {
+        alert("Primero genera un código QR.");
+        return;
+      }
+
+      const doc = new jsPDF();
+      doc.text("Tu código QR:", 10, 10);
+
+      const qrImage = qrContainer.querySelector("img").src;
+
+      doc.addImage(qrImage, 'PNG', 10, 20, 50, 50);
+      doc.save("qr-code.pdf");
+    }
+
+    function acortarEnlace() {
+  const urlInput = document.getElementById("urlInput").value;
+
+  if (!urlInput) {
+    alert("Por favor, ingresa un enlace.");
+    return;
+  }
+
+  fetch('http://localhost:3000/api/acortar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ url: urlInput })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.shortUrl) {
+      document.getElementById("shortenedUrlDisplay").textContent = `Enlace acortado: ${data.shortUrl}`;
+    } else {
+      document.getElementById("shortenedUrlDisplay").textContent = `Error al acortar el enlace.`;
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    document.getElementById("shortenedUrlDisplay").textContent = `Error en la solicitud`;
+  });
+}
+
+
+  </script>
+</body>
+</html>
